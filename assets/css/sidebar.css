@@ -1,0 +1,488 @@
+/* ============================================
+   FixPoint - Sidebar Navigation CSS
+   ============================================ */
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #cbd5e1;
+    --sidebar-active-bg: rgba(37, 99, 235, 0.15);
+    --sidebar-active-text: #60a5fa;
+    --sidebar-hover-bg: rgba(255, 255, 255, 0.05);
+    --topbar-height: 56px;
+}
+
+/* ============================================
+   Hide old header when sidebar is active
+   ============================================ */
+body.has-sidebar .header {
+    display: none !important;
+}
+
+/* ============================================
+   Base Layout
+   ============================================ */
+body.has-sidebar {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+/* ============================================
+   Sidebar
+   ============================================ */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow-y: auto;
+    overflow-x: visible;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+}
+
+/* ============================================
+   Sidebar Header (Logo)
+   ============================================ */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sidebar-logo-icon {
+    font-size: 1.5rem;
+}
+
+.sidebar-logo-text {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.sidebar-logo-sub {
+    display: block;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-close {
+    display: none;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+/* ============================================
+   Sidebar User Section
+   ============================================ */
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+}
+
+.sidebar-avatar {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.sidebar-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sidebar-user-name {
+    display: block;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+    display: block;
+    color: #94a3b8;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Notification bell inside sidebar */
+.sidebar-user .notif-wrapper {
+    position: static;
+}
+
+.sidebar-user .notif-dropdown {
+    position: fixed;
+    left: 270px;
+    z-index: 99999;
+}
+
+/* ============================================
+   Sidebar Navigation
+   ============================================ */
+.sidebar-nav {
+    flex: 1;
+    padding: 0.75rem 0;
+    overflow-y: auto;
+}
+
+.sidebar-section-label {
+    padding: 0.5rem 1rem 0.25rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.5rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    position: relative;
+    margin: 0.1rem 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.sidebar-link:hover {
+    background: var(--sidebar-hover-bg);
+    color: #fff;
+}
+
+.sidebar-link.active {
+    background: var(--sidebar-active-bg);
+    color: var(--sidebar-active-text);
+}
+
+.sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: var(--sidebar-active-text);
+    border-radius: 0 2px 2px 0;
+}
+
+.sidebar-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-badge {
+    margin-left: auto;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 0.75rem 1rem;
+}
+
+.sidebar-logout {
+    color: #f87171 !important;
+}
+
+.sidebar-logout:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #fca5a5 !important;
+}
+
+/* ============================================
+   Main Content Area
+   ============================================ */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    min-height: 100vh;
+    width: calc(100% - var(--sidebar-width));
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   Mobile Topbar (hidden on desktop)
+   ============================================ */
+.topbar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    height: var(--topbar-height);
+    background: var(--sidebar-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+}
+
+.hamburger {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.topbar-notif {
+    color: #fff;
+}
+
+.topbar-notif .notif-dropdown {
+    position: fixed;
+    right: 1rem;
+    left: auto !important;
+    z-index: 99999;
+}
+
+/* ============================================
+   Sidebar Overlay (mobile)
+   ============================================ */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+/* ============================================
+   MOBILE (≤768px)
+   ============================================ */
+@media (max-width: 768px) {
+    /* Sidebar hidden by default, slides in */
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-close {
+        display: block;
+    }
+
+    /* Topbar visible on mobile */
+    .topbar {
+        display: flex;
+    }
+
+    /* Main content takes full width */
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Notification dropdown inside sidebar on mobile */
+    .sidebar-user .notif-dropdown {
+        position: fixed;
+        left: 10px !important;
+        right: 10px !important;
+        top: auto;
+        z-index: 99999;
+    }
+
+    /* Dashboard container padding on mobile */
+    .dashboard-container {
+        padding: 1rem !important;
+    }
+
+    /* Stats grid - 2 columns on mobile */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Stat cards smaller on mobile */
+    .stat-card {
+        padding: 1rem !important;
+    }
+
+    .stat-value {
+        font-size: 1.75rem !important;
+    }
+
+    /* Action buttons stack on mobile */
+    .action-buttons {
+        flex-direction: column !important;
+    }
+
+    /* Tables scroll horizontally */
+    .requests-table {
+        min-width: 600px;
+    }
+}
+
+/* ============================================
+   Language Toggle Button
+   ============================================ */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    margin: 0.75rem 0.5rem;
+}
+
+.lang-toggle a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.5rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.lang-toggle a:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+/* ============================================
+   RTL Support
+   ============================================ */
+[dir="rtl"] .sidebar {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .main-content {
+    margin-left: 0;
+    margin-right: var(--sidebar-width);
+}
+
+[dir="rtl"] .sidebar-link.active::before {
+    left: auto;
+    right: -0.5rem;
+    border-radius: 2px 0 0 2px;
+}
+
+[dir="rtl"] .sidebar-badge {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+[dir="rtl"] .requests-table th,
+[dir="rtl"] .requests-table td {
+    text-align: right;
+}
+
+[dir="rtl"] .stat-card {
+    border-left: none;
+    border-right: 4px solid #2563eb;
+}
+[dir="rtl"] .stat-card.warning  { border-right-color: #f59e0b; }
+[dir="rtl"] .stat-card.success  { border-right-color: #10b981; }
+[dir="rtl"] .stat-card.info     { border-right-color: #3b82f6; }
+[dir="rtl"] .stat-card.danger   { border-right-color: #ef4444; }
+
+[dir="rtl"] .form-input,
+[dir="rtl"] select,
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] textarea {
+    text-align: right;
+    direction: rtl;
+}
+
+@media (max-width: 768px) {
+    [dir="rtl"] .sidebar {
+        transform: translateX(100%);
+        left: auto;
+        right: 0;
+    }
+
+    [dir="rtl"] .sidebar.open {
+        transform: translateX(0);
+    }
+
+    [dir="rtl"] .main-content {
+        margin-right: 0;
+    }
+}
